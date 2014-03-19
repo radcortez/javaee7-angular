@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="persons">
+<head>
+    <title></title>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/jquery-1.9.1.js"></script>
+    <script src="lib/ui-bootstrap-0.10.0.min.js"></script>
+    <script src="lib/ng-grid.min.js"></script>
+
+    <script src="script/person.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/ng-grid.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+
+<br>
+
+<div class="grid">
+    <div ng-controller="personsList">
+        <div class="gridStyle" ng-grid="gridOptions"></div>
+
+        <pagination direction-links="true" boundary-links="true"
+                    total-items="persons.totalResults" page="persons.currentPage" items-per-page="persons.pageSize"
+                    on-select-page="refreshGrid(page)">
+        </pagination>
+    </div>
+</div>
+
+</body>
+</html>

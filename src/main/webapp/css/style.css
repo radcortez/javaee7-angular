@@ -1,0 +1,14 @@
+body {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    text-align: center;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    height: 180px;
+}
