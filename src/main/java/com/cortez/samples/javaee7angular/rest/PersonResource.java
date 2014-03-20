@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
+ * REST Service to expose the data to display in the UI grid.
+ *
  * @author Roberto Cortez
  */
 @Stateless

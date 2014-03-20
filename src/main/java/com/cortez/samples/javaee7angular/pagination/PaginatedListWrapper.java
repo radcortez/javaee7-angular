@@ -3,6 +3,8 @@ package com.cortez.samples.javaee7angular.pagination;
 import java.util.List;
 
 /**
+ * Wraps all the information needed to paginate a table.
+ *
  * @author Roberto Cortez
  */
 public class PaginatedListWrapper<T> {

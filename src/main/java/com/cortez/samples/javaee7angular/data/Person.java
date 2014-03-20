@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
+ * Simple entity.
+ *
  * @author Roberto Cortez
  */
 @Entity
