@@ -1,5 +1,6 @@
 var app = angular.module('persons', ['ngGrid', 'ui.bootstrap']);
 
+// Create a controller with name personsList to bind to the html page.
 app.controller('personsList', function ($scope, $http) {
     // Makes the REST request to get the data to populate the grid.
     $scope.refreshGrid = function (page) {
