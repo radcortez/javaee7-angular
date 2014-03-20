@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Declares the root element that allows behaviour to be modified through Angular custom HTML tags. -->
 <html ng-app="persons">
 <head>
     <title></title>
@@ -19,9 +20,12 @@
 <br>
 
 <div class="grid">
+    <!-- Specify a JavaScript controller script that binds Javascript variables to the HTML.-->
     <div ng-controller="personsList">
+        <!-- Binds the grid component to be displayed. -->
         <div class="gridStyle" ng-grid="gridOptions"></div>
 
+        <!--  Bind the pagination component to be displayed. -->
         <pagination direction-links="true" boundary-links="true"
                     total-items="persons.totalResults" page="persons.currentPage" items-per-page="persons.pageSize"
                     on-select-page="refreshGrid(page)">
