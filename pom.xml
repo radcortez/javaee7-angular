@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>nextprev</name>
+    <name>javaee7-angular</name>
 
     <prerequisites>
         <maven>3.1.0</maven>
