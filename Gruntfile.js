@@ -16,11 +16,8 @@ module.exports = function (grunt) {
 
             // Project settings
             config: {
-                project: {
-                    hostname: ''
-                },
                 path: {
-                    app: {
+                    webapp: {
                         root: 'src/main/webapp'
                     },
                     temp: {
@@ -41,9 +38,9 @@ module.exports = function (grunt) {
 
             // Automatically inject Bower components into the HTML file
             bowerInstall: {
-                app: {
-                    src: '<%= config.path.app.root %>/index.html',
-                    ignorePath: '<%= config.path.app.root %>'
+                webapp: {
+                    src: '<%= config.path.webapp.root %>/index.html',
+                    ignorePath: '<%= config.path.webapp.root %>'
                 }
             },
 
@@ -52,7 +49,7 @@ module.exports = function (grunt) {
             concat: {
                 styles: {
                     src: [
-                        '<%= config.path.app.root %>/css/style.css',
+                        '<%= config.path.webapp.root %>/css/style.css',
                     ],
                     dest: '<%= config.path.temp.root %>/concat/css/application.css'
                 }
@@ -60,12 +57,11 @@ module.exports = function (grunt) {
 */
 
             // Copies remaining files to places other tasks can use
-            // TODO: review this, might not be nedded
             copy: {
                 build: {
                     files: [
                         {
-                            src: '<%= config.path.app.root %>/index.html',
+                            src: '<%= config.path.webapp.root %>/index.html',
                             dest: '<%= config.path.build.root %>/index.html'
                         }
                     ]
@@ -98,10 +94,10 @@ module.exports = function (grunt) {
 
             // Reads HTML for usemin blocks to enable smart builds
             useminPrepare: {
-                html: '<%= config.path.app.root %>/index.html',
+                html: '<%= config.path.webapp.root %>/index.html',
                 options: {
                     staging: '<%= config.path.temp.root %>',
-                    root: '<%= config.path.app.root %>',
+                    root: '<%= config.path.webapp.root %>',
                     dest: '<%= config.path.build.root %>'
                 }
             },
@@ -122,7 +118,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:build',
         //'concat:styles',
-        'bowerInstall:app',
+        'bowerInstall:webapp',
         'useminPrepare',
         'concat:generated',
         'cssmin',
