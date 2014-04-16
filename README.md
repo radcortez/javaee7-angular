@@ -10,3 +10,6 @@
 
 * Start Wildfly and go to http://localhost:8080/javaee7-angular-1.0-SNAPSHOT/
 
+
+* Install NPM - Node Packaged Modules, for detailed information please go to https://www.npmjs.org/package/npm-install
+
