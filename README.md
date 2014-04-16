@@ -11,5 +11,11 @@
 * Start Wildfly and go to http://localhost:8080/javaee7-angular-1.0-SNAPSHOT/
 
 
-* Install NPM - Node Packaged Modules, for detailed information please go to https://www.npmjs.org/package/npm-install
+* Install NPM $npm install -g npm-install - for detailed information please go to https://www.npmjs.org/package/npm-install
+* Once NPM is installed run $npm install to load all dependencies defined on package.json; A node_modules folder will be created.
 
+* Install Bower $npm install -g bower - for detailed information please go to https://github.com/bower/bower
+* Once Bower is installed run $bower install to load all dependencies defined on bower.json. A web_app\lib\bower\ folder will be created.
+
+* Install Grunt $npm install -g grunt-cli - for more information please go to http://gruntjs.com/getting-started
+* Once Grunt is installed run $grunt.
