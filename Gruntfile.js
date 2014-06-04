@@ -36,6 +36,11 @@ module.exports = function (grunt) {
                 ]
             },
 
+            bower: {
+                //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
+                install: {}
+            },
+
             // Automatically inject Bower components into the HTML file
             bowerInstall: {
                 webapp: {
@@ -45,7 +50,7 @@ module.exports = function (grunt) {
             },
 
             // this is usefull when we have more than one css file, not the case now...
-/*
+            /*
             concat: {
                 styles: {
                     src: [
@@ -54,7 +59,7 @@ module.exports = function (grunt) {
                     dest: '<%= config.path.temp.root %>/concat/css/application.css'
                 }
             },
-*/
+            */
 
             // Copies remaining files to places other tasks can use
             copy: {
@@ -117,6 +122,7 @@ module.exports = function (grunt) {
     // Task: Build production version ready for deployment
     grunt.registerTask('build', [
         'clean:build',
+        'bower:install',
         //'concat:styles',
         'bowerInstall:webapp',
         'useminPrepare',
