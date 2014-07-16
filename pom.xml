@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cortez.samples</groupId>
@@ -21,9 +20,12 @@
         <!-- Plugins -->
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.enforcer>1.3.1</version.plugin.enforcer>
+        <version.plugin.war>2.4</version.plugin.war>
+        <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
+        <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
 
         <!-- Dependencies -->
-        <wildfly.version>8.0.0.CR1</wildfly.version>
+        <version.dependency.javaee>7.0</version.dependency.javaee>
     </properties>
 
     <build>
@@ -64,15 +66,25 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
+                <version>${version.plugin.war}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
 
             <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>${version.plugin.jgitflow}</version>
+                <configuration>
+                    <noDeploy>true</noDeploy>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>jrebel-maven-plugin</artifactId>
+                <version>${version.plugin.jrebel}</version>
                 <executions>
                     <execution>
                         <id>generate-rebel-xml</id>
@@ -90,7 +102,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>${version.dependency.javaee}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
