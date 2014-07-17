@@ -29,6 +29,7 @@ module.exports = function (grunt) {
                 }
             },
 
+            // From grunt-contrib-clean
             clean: {
                 build: [
                     '<%= config.path.temp.root %>',
@@ -36,20 +37,23 @@ module.exports = function (grunt) {
                 ]
             },
 
-            bower: {
-                //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
-                install: {}
+            // From grunt-bower-install-simple. Downloads the web dependencies.
+            "bower-install-simple": {
+                options: {
+                    color:       true,
+                    production:  false
+                }
             },
 
-            // Automatically inject Bower components into the HTML file
-            bowerInstall: {
-                webapp: {
+            // From grunt-wiredep. Automatically inject Bower components into the HTML file
+            wiredep: {
+                target: {
                     src: '<%= config.path.webapp.root %>/index.html',
                     ignorePath: '<%= config.path.webapp.root %>'
                 }
             },
 
-            // this is usefull when we have more than one css file, not the case now...
+            // From grunt-contrib-concat. This is usefull when we have more than one css file, not the case now...
             /*
             concat: {
                 styles: {
@@ -61,7 +65,7 @@ module.exports = function (grunt) {
             },
             */
 
-            // Copies remaining files to places other tasks can use
+            // From grunt-contrib-copy. Copies remaining files to places other tasks can use
             copy: {
                 build: {
                     files: [
@@ -73,7 +77,7 @@ module.exports = function (grunt) {
                 }
             },
 
-            // Minifies index.html file.
+            // From grunt-contrib-htmlmin. Minifies index.html file.
             htmlmin: {
                 prod: {
                     options: {
@@ -97,7 +101,7 @@ module.exports = function (grunt) {
                 }
             },
 
-            // Reads HTML for usemin blocks to enable smart builds
+            // From grunt-usemin. Reads HTML for usemin blocks to enable smart builds
             useminPrepare: {
                 html: '<%= config.path.webapp.root %>/index.html',
                 options: {
@@ -107,10 +111,12 @@ module.exports = function (grunt) {
                 }
             },
 
+            // From grunt-usemin.
             usemin: {
                 html: '<%= config.path.build.root %>/index.html'
             },
 
+            // From grunt-contrib-uglify.
             uglify: {
                 options: {
                     mangle: false
@@ -122,9 +128,9 @@ module.exports = function (grunt) {
     // Task: Build production version ready for deployment
     grunt.registerTask('build', [
         'clean:build',
-        'bower:install',
+        'bower-install-simple',
         //'concat:styles',
-        'bowerInstall:webapp',
+        'wiredep',
         'useminPrepare',
         'concat:generated',
         'cssmin',
