@@ -3,7 +3,7 @@
 
     <groupId>com.cortez.samples</groupId>
     <artifactId>javaee7-angular</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
     <packaging>war</packaging>
 
     <name>javaee7-angular</name>

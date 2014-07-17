@@ -2,17 +2,32 @@
 <!-- Declares the root element that allows behaviour to be modified through Angular custom HTML tags. -->
 <html ng-app="persons">
 <head>
-    <title></title>
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/jquery-1.9.1.js"></script>
-    <script src="lib/ui-bootstrap-0.10.0.min.js"></script>
-    <script src="lib/ng-grid.min.js"></script>
+    <title>javaee7-angular</title>
 
-    <script src="script/person.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="lib/ng-grid.min.css"/>
+    <!-- build:css css/third-party.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="lib/bower/angular-grid/ng-grid.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css css/application.css -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <!-- endbuild -->
+
+    <!-- build:js lib/third-party.js -->
+    <!-- bower:js -->
+    <script src="lib/bower/jquery/jquery.js"></script>
+    <script src="lib/bower/angular/angular.js"></script>
+    <script src="lib/bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="lib/bower/angular-grid/build/ng-grid.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js script/all.js -->
+    <script src="script/person.js"></script>
+    <!-- endbuild -->
 </head>
 
 <body>
