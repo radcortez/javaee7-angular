@@ -1,12 +1,18 @@
-var app = angular.module('persons', ['ngGrid', 'ui.bootstrap']);
+var app = angular.module('persons', ['ngResource', 'ngGrid', 'ui.bootstrap']);
 
 // Create a controller with name personsList to bind to the html page.
 app.controller('personsList', function ($scope, personService) {
     // Refresh the grid, calling the appropriate service method.
-    $scope.refreshGrid = function (page) {
-        personService.getAll(page, $scope.sortInfo.fields[0], $scope.sortInfo.directions[0]).success(function (data) {
+    $scope.refreshGrid = function () {
+        var listPersonsArgs = {
+            page: $scope.persons.currentPage,
+            sortFields: $scope.sortInfo.fields[0],
+            sortDirections: $scope.sortInfo.directions[0]
+        };
+
+        personService.get(listPersonsArgs, function(data) {
             $scope.persons = data;
-        });
+        })
     };
 
     // Do something when the grid is sorted.
@@ -19,7 +25,7 @@ app.controller('personsList', function ($scope, personService) {
     // Watch the sortInfo variable. If changes are detected than we need to refresh the grid.
     // This also works for the first page access, since we assign the initial sorting in the initialize section.
     $scope.$watch('sortInfo.fields[0]', function () {
-        $scope.refreshGrid($scope.persons.currentPage);
+        $scope.refreshGrid();
     }, true);
 
     // Initialize required information: sorting, the first page to show and the grid options.
@@ -33,14 +39,6 @@ app.controller('personsList', function ($scope, personService) {
 });
 
 // Service that provides persons operations
-app.service('personService', function ($http) {
-    // Makes the REST request to get the data to populate the grid.
-    this.getAll = function (page, sortFields, sortDirections) {
-        return $http.get('resources/persons', {
-            params: {
-                page: page,
-                sortFields: sortFields,
-                sortDirections: sortDirections
-            }});
-    }
+app.factory('personService', function ($resource) {
+    return $resource('resources/persons');
 });

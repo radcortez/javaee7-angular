@@ -126,7 +126,7 @@ module.exports = function (grunt) {
     );
 
     // Task: Build production version ready for deployment
-    grunt.registerTask('build', [
+    grunt.registerTask('install', [
         'clean:build',
         'bower-install-simple',
         //'concat:styles',
@@ -140,7 +140,12 @@ module.exports = function (grunt) {
         'htmlmin'
     ]);
 
+    grunt.registerTask('process-resources', [
+        'bower-install-simple',
+        'wiredep',
+    ]);
+
     grunt.registerTask('default', [
-        'build'
+        'install'
     ]);
 };
