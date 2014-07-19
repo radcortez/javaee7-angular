@@ -17,6 +17,8 @@ public class Person {
 
     private String description;
 
+    private String link;
+
     public Long getId() {
         return id;
     }
@@ -39,6 +41,14 @@ public class Person {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     @Override

@@ -20,6 +20,8 @@ import java.util.List;
 @Stateless
 @ApplicationPath("/resources")
 @Path("persons")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class PersonResource extends Application {
     @PersistenceContext
     private EntityManager entityManager;
@@ -37,7 +39,7 @@ public class PersonResource extends Application {
         return query.getResultList();
     }
 
-    public PaginatedListWrapper<Person> findPersons(PaginatedListWrapper<Person> wrapper) {
+    private PaginatedListWrapper<Person> findPersons(PaginatedListWrapper<Person> wrapper) {
         wrapper.setTotalResults(countPersons());
         int start = (wrapper.getCurrentPage() - 1) * wrapper.getPageSize();
         wrapper.setList(findPersons(start,
@@ -62,7 +64,35 @@ public class PersonResource extends Application {
         paginatedListWrapper.setCurrentPage(page);
         paginatedListWrapper.setSortFields(sortFields);
         paginatedListWrapper.setSortDirections(sortDirections);
-        paginatedListWrapper.setPageSize(5);
+        paginatedListWrapper.setPageSize(10);
         return findPersons(paginatedListWrapper);
+    }
+
+    @GET
+    @Path("{id}")
+    public Person getPerson( @PathParam("id") Long id) {
+        return entityManager.find(Person.class, id);
+    }
+
+    @POST
+    public Person savePerson(Person person) {
+        if (person.getId() == null) {
+            person.setId(countPersons().longValue() + 1);
+            entityManager.persist(person);
+        } else {
+            Person personToSave = getPerson(person.getId());
+            personToSave.setName(person.getName());
+            personToSave.setDescription(person.getDescription());
+            personToSave.setLink(person.getLink());
+            person = entityManager.merge(personToSave);
+        }
+
+        return person;
+    }
+
+    @DELETE
+    @Path("{id}")
+    public void deletePerson(@PathParam("id") Long id) {
+        entityManager.remove(getPerson(id));
     }
 }

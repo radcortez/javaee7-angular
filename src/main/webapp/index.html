@@ -4,10 +4,9 @@
 <head>
     <title>javaee7-angular</title>
 
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
     <!-- build:css css/third-party.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="lib/bower/bootstrap-css-only/css/bootstrap.css" />
     <link rel="stylesheet" href="lib/bower/angular-grid/ng-grid.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -33,11 +32,19 @@
 
 <body>
 
+<h1>Java EE - Angular Application</h1>
+
+<br/>
+
+<div class="message" ng-controller="alertMessagesController">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
+
 <br>
 
 <div class="grid">
     <!-- Specify a JavaScript controller script that binds Javascript variables to the HTML.-->
-    <div ng-controller="personsList">
+    <div ng-controller="personsListController">
         <!-- Binds the grid component to be displayed. -->
         <div class="gridStyle" ng-grid="gridOptions"></div>
 
@@ -46,6 +53,37 @@
                     total-items="persons.totalResults" items-per-page="persons.pageSize"
                     ng-model="persons.currentPage" ng-change="refreshGrid()">
         </pagination>
+    </div>
+</div>
+
+<div class="form">
+    <div>
+        <form name="personForm" ng-controller="personsFormController" ng-submit="updatePerson()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" class="form-control" ng-model="person.name" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input id="description" name="description" type="text" class="form-control" ng-model="person.description"/>
+            </div>
+
+            <div class="form-group">
+                <label for="link">Link:</label>
+                <input id="link" name="link" type="url" class="form-control" ng-model="person.link"/>
+            </div>
+
+            <div class="avatar" ng-if="person.link">
+                <img src="{{person.link}}"/>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn btn-primary" ng-click="clearForm()">Clear</button>
+                <button type="button" class="btn btn-primary" ng-click="deletePerson()">Delete</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
     </div>
 </div>
 
