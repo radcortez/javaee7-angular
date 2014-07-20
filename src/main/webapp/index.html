@@ -42,46 +42,81 @@
 
 <br>
 
-<div class="grid">
-    <!-- Specify a JavaScript controller script that binds Javascript variables to the HTML.-->
-    <div ng-controller="personsListController">
-        <!-- Binds the grid component to be displayed. -->
-        <div class="gridStyle" ng-grid="gridOptions"></div>
-
-        <!--  Bind the pagination component to be displayed. -->
-        <pagination direction-links="true" boundary-links="true"
-                    total-items="persons.totalResults" items-per-page="persons.pageSize"
-                    ng-model="persons.currentPage" ng-change="refreshGrid()">
-        </pagination>
+<!-- Specify a JavaScript controller script that binds Javascript variables to the HTML.-->
+<div class="grid" ng-controller="personsListController">
+    <div>
+        <h3>List Persons</h3>
     </div>
+
+    <!-- Binds the grid component to be displayed. -->
+    <div class="gridStyle" ng-grid="gridOptions"></div>
+
+    <!--  Bind the pagination component to be displayed. -->
+    <pagination direction-links="true" boundary-links="true"
+                total-items="persons.totalResults" items-per-page="persons.pageSize"
+                ng-model="persons.currentPage" ng-change="refreshGrid()">
+    </pagination>
 </div>
 
-<div class="form">
+
+
+<div class="form" ng-controller="personsFormController">
+    <div ng-if="person.id == null">
+        <h3>Add Person</h3>
+    </div>
+
+    <div ng-if="person.id != null">
+        <h3>Edit Person</h3>
+    </div>
+
     <div>
-        <form name="personForm" ng-controller="personsFormController" ng-submit="updatePerson()">
-            <div class="form-group">
+        <form name="personForm" ng-submit="updatePerson()" novalidate>
+
+            <div class="form-group" ng-class="{'has-error' : personForm.name.$invalid && personForm.name.$dirty}">
                 <label for="name">Name:</label>
-                <input id="name" name="name" type="text" class="form-control" ng-model="person.name" required/>
+                <span ng-class="{'glyphicon glyphicon-ok' : personForm.name.$valid && personForm.name.$dirty}"></span>
+
+                <input id="name" name="name" type="text" class="form-control" maxlength="50"
+                       ng-model="person.name"
+                       required ng-minlength="2" ng-maxlength="50"/>
+
+                <p class="help-block" ng-show="personForm.name.$error.required">Add Name.</p>
+                <p class="help-block" ng-show="personForm.name.$error.minlength">Name must be at least 2 characters long.</p>
+                <p class="help-block" ng-show="personForm.name.$error.maxlength">Name cannot be longer than 50 characters.</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : personForm.description.$invalid && personForm.description.$dirty}">
                 <label for="description">Description:</label>
-                <input id="description" name="description" type="text" class="form-control" ng-model="person.description"/>
+                <span ng-class="{'glyphicon glyphicon-ok' : personForm.description.$valid && personForm.description.$dirty}"></span>
+
+                <input id="description" name="description" type="text" class="form-control" maxlength="100"
+                       ng-model="person.description"
+                       required ng-minlength="5" ng-maxlength="100"/>
+
+                <p class="help-block" ng-show="personForm.description.$error.required">Add Description.</p>
+                <p class="help-block" ng-show="personForm.description.$error.minlength">Description must be at least 5 characters long.</p>
+                <p class="help-block" ng-show="personForm.description.$error.maxlength">Description cannot be longer than 100 characters.</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : personForm.link.$invalid && personForm.link.$dirty}">
                 <label for="link">Link:</label>
-                <input id="link" name="link" type="url" class="form-control" ng-model="person.link"/>
+                <span ng-class="{'glyphicon glyphicon-ok' : personForm.link.$valid && personForm.link.$dirty}"></span>
+
+                <input id="link" name="link" type="url" class="form-control" maxlength="500"
+                       ng-model="person.link"
+                       required/>
+
+                <p class="help-block" ng-show="personForm.link.$error.required">Add Link.</p>
+                <p class="help-block" ng-show="personForm.link.$invalid && personForm.link.$dirty">Invalid Link.</p>
             </div>
 
             <div class="avatar" ng-if="person.link">
-                <img src="{{person.link}}"/>
+                <img ng-src="{{person.link}}" width="400" height="250"/>
             </div>
 
             <div class="buttons">
                 <button type="button" class="btn btn-primary" ng-click="clearForm()">Clear</button>
-                <button type="button" class="btn btn-primary" ng-click="deletePerson()">Delete</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="personForm.$invalid">Save</button>
             </div>
         </form>
     </div>

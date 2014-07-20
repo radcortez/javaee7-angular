@@ -40,7 +40,8 @@ app.controller('personsListController', function ($scope, $rootScope, personServ
         columnDefs: [
             { field: 'id', displayName:'Id' },
             { field: 'name', displayName: 'Name' },
-            { field: 'description', displayName: 'Description' }
+            { field: 'description', displayName: 'Description' },
+            { field: '', width: 30, cellTemplate: '<span class="glyphicon glyphicon-remove remove" ng-click="deleteRow(row)"></span>' }
         ],
 
         multiSelect: false,
@@ -52,19 +53,26 @@ app.controller('personsListController', function ($scope, $rootScope, personServ
         }
     };
 
+    $scope.deleteRow = function (row) {
+        $rootScope.$broadcast('deletePerson', row.entity.id);
+    };
+
     $scope.$on('personsDirty', function () {
         $scope.refreshGrid();
+    });
+
+    $scope.$on('clear', function (event) {
+        $scope.gridOptions.selectAll(false);
     });
 });
 
 app.controller('personsFormController', function ($scope, $rootScope, personService) {
     $scope.clearForm = function () {
         $scope.person = null;
+        document.getElementById('link').value = null;
+        $scope.personForm.$setPristine();
+        $rootScope.$broadcast('clear');
     };
-
-    $scope.$on('personSelected', function (event, id) {
-        $scope.person = personService.get({id: id});
-    });
 
     $scope.updatePerson = function () {
         personService.save($scope.person).$promise.then(
@@ -72,17 +80,27 @@ app.controller('personsFormController', function ($scope, $rootScope, personServ
                 $rootScope.$broadcast('personsDirty');
                 $rootScope.$broadcast('personSaved')
                 $scope.clearForm();
+            },
+            function () {
+                $rootScope.$broadcast('error');
             });
     };
 
-    $scope.deletePerson = function () {
-        personService.delete({id: $scope.person.id}).$promise.then(
+    $scope.$on('personSelected', function (event, id) {
+        $scope.person = personService.get({id: id});
+    });
+
+    $scope.$on('deletePerson', function (event, id) {
+        personService.delete({id: id}).$promise.then(
             function () {
                 $rootScope.$broadcast('personsDirty');
                 $rootScope.$broadcast('personDeleted');
                 $scope.clearForm();
+            },
+            function () {
+                $rootScope.$broadcast('error');
             });
-    };
+    });
 });
 
 app.controller('alertMessagesController', function ($scope) {
@@ -95,6 +113,12 @@ app.controller('alertMessagesController', function ($scope) {
     $scope.$on('personDeleted', function (event) {
         $scope.alerts = [
             { type: 'success', msg: 'Record deleted successfully!' }
+        ];
+    });
+
+    $scope.$on('error', function (event) {
+        $scope.alerts = [
+            { type: 'danger', msg: 'There was a problem in the server!' }
         ];
     });
 

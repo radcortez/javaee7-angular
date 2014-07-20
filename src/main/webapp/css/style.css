@@ -5,6 +5,11 @@ body {
     text-align: center;
 }
 
+h3 {
+    margin: 0 0 20px;
+    text-align: left;
+}
+
 .message {
     margin-left: 5%;
     margin-right: 5%;
@@ -15,6 +20,13 @@ body {
     float: left;
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.grid .remove {
+    width: 20px;
+    height: 20px;
+    margin-top: 8px;
+    color: #a94442;
 }
 
 .gridStyle {
@@ -43,17 +55,26 @@ body {
     float: right;
     width: 20px;
     height: 20px;
+    margin-top: 5px;
     margin-left: 5px;
-    color: green;
+    color: #5cb85c;
+}
+
+.form .form-group p {
+    margin-top: 15px;
+    margin-left: 200px;
+    color: #a94442;
 }
 
 .form .avatar {
     height: 250px;
     float: right;
+    margin-right: 25px;
 }
 
 .form .buttons {
     clear: both;
     float: right;
     margin-top: 10px;
+    margin-right: 25px;
 }

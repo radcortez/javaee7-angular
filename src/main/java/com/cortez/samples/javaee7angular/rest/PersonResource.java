@@ -77,14 +77,17 @@ public class PersonResource extends Application {
     @POST
     public Person savePerson(Person person) {
         if (person.getId() == null) {
-            person.setId(countPersons().longValue() + 1);
-            entityManager.persist(person);
-        } else {
-            Person personToSave = getPerson(person.getId());
+            Person personToSave = new Person();
             personToSave.setName(person.getName());
             personToSave.setDescription(person.getDescription());
             personToSave.setLink(person.getLink());
-            person = entityManager.merge(personToSave);
+            entityManager.persist(person);
+        } else {
+            Person personToUpdate = getPerson(person.getId());
+            personToUpdate.setName(person.getName());
+            personToUpdate.setDescription(person.getDescription());
+            personToUpdate.setLink(person.getLink());
+            person = entityManager.merge(personToUpdate);
         }
 
         return person;

@@ -1,7 +1,6 @@
 package com.cortez.samples.javaee7angular.data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Simple entity.
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 @Entity
 public class Person {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
+    @SequenceGenerator(name = "id", sequenceName = "id")
     private Long id;
 
     private String name;
