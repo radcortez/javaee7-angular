@@ -80,13 +80,13 @@ public class PersonResource extends Application {
             Person personToSave = new Person();
             personToSave.setName(person.getName());
             personToSave.setDescription(person.getDescription());
-            personToSave.setLink(person.getLink());
+            personToSave.setImageUrl(person.getImageUrl());
             entityManager.persist(person);
         } else {
             Person personToUpdate = getPerson(person.getId());
             personToUpdate.setName(person.getName());
             personToUpdate.setDescription(person.getDescription());
-            personToUpdate.setLink(person.getLink());
+            personToUpdate.setImageUrl(person.getImageUrl());
             person = entityManager.merge(personToUpdate);
         }
 

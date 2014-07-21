@@ -18,7 +18,7 @@ public class Person {
 
     private String description;
 
-    private String link;
+    private String imageUrl;
 
     public Long getId() {
         return id;
@@ -44,12 +44,12 @@ public class Person {
         this.description = description;
     }
 
-    public String getLink() {
-        return link;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setImageUrl(String link) {
+        this.imageUrl = link;
     }
 
     @Override
