@@ -8,9 +8,11 @@
     "description": "javaee7-angular JavaScript dependencies.",
     "private": true,
     "dependencies": {
-        "angular": "1.2.0",
-        "jquery": "1.9.1",
-        "angular-bootstrap": "0.10.0",
-        "angular-grid": "2.0.7"
+        "angular": "~1.2.20",
+        "angular-resource": "~1.2.20",
+        "jquery": "~1.9.1",
+        "angular-bootstrap": "~0.11.0",
+        "bootstrap-css-only": "3.2.0",
+        "angular-grid": "~2.0.11"
     }
 }
