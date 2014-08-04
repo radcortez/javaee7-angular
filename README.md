@@ -16,4 +16,6 @@
 
 * Once NPM is installed run the command `npm install`.
 
+* Install Grunt `npm install -g grunt-cli`  for more information please go to http://gruntjs.com/getting-started.
+
 * Run the command 'grunt' to download all the web dependencies and build an optimized version of the project.
