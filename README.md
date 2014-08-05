@@ -10,7 +10,9 @@
 
 * Start Wildfly and go to http://localhost:8080/javaee7-angular-1.0-SNAPSHOT/
 
-## Javascript Package Management ##
+## Javascript Package Management (optional) ##
+
+* The required JS libraries are included in the project, but it also possible to manage them with the next steps.
 
 * You need NPM. Please go to http://nodejs.org/download/ to get a copy.
 
