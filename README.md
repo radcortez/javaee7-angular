@@ -6,9 +6,9 @@
 
 * Build the code using Maven with the command: `mvn clean install`.
 
-* Copy the file javaee7-angular-1.0-SNAPSHOT.war from target directory to your Wildfly installation folder /standalone/deployments
+* Copy the file javaee7-angular-3.1.war from target directory to your Wildfly installation folder /standalone/deployments
 
-* Start Wildfly and go to http://localhost:8080/javaee7-angular-1.0-SNAPSHOT/
+* Start Wildfly and go to http://localhost:8080/javaee7-angular-3.1/
 
 ## Javascript Package Management (optional) ##
 
