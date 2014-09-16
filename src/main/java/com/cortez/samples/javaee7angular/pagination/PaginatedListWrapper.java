@@ -1,5 +1,10 @@
 package com.cortez.samples.javaee7angular.pagination;
 
+import com.cortez.samples.javaee7angular.data.Person;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,14 +12,16 @@ import java.util.List;
  *
  * @author Roberto Cortez
  */
-public class PaginatedListWrapper<T> {
+@XmlRootElement
+public class PaginatedListWrapper implements Serializable {
     private Integer currentPage;
     private Integer pageSize;
     private Integer totalResults;
 
     private String sortFields;
     private String sortDirections;
-    private List<T> list;
+    @XmlElement
+    private List<Person> list;
 
     public Integer getCurrentPage() {
         return currentPage;
@@ -56,11 +63,11 @@ public class PaginatedListWrapper<T> {
         this.sortDirections = sortDirections;
     }
 
-    public List<T> getList() {
+    public List getList() {
         return list;
     }
 
-    public void setList(List<T> list) {
+    public void setList(List<Person> list) {
         this.list = list;
     }
 }
