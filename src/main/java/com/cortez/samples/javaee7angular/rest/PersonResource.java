@@ -33,13 +33,14 @@ public class PersonResource extends Application {
 
     @SuppressWarnings("unchecked")
     private List<Person> findPersons(int startPosition, int maxResults, String sortFields, String sortDirections) {
-        Query query = entityManager.createQuery("SELECT p FROM Person p ORDER BY " + sortFields + " " + sortDirections);
+        Query query =
+                entityManager.createQuery("SELECT p FROM Person p ORDER BY p." + sortFields + " " + sortDirections);
         query.setFirstResult(startPosition);
         query.setMaxResults(maxResults);
         return query.getResultList();
     }
 
-    private PaginatedListWrapper<Person> findPersons(PaginatedListWrapper<Person> wrapper) {
+    private PaginatedListWrapper findPersons(PaginatedListWrapper wrapper) {
         wrapper.setTotalResults(countPersons());
         int start = (wrapper.getCurrentPage() - 1) * wrapper.getPageSize();
         wrapper.setList(findPersons(start,
@@ -51,16 +52,16 @@ public class PersonResource extends Application {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public PaginatedListWrapper<Person> listPersons(@DefaultValue("1")
-                                                    @QueryParam("page")
-                                                    Integer page,
-                                                    @DefaultValue("id")
-                                                    @QueryParam("sortFields")
-                                                    String sortFields,
-                                                    @DefaultValue("asc")
-                                                    @QueryParam("sortDirections")
-                                                    String sortDirections) {
-        PaginatedListWrapper<Person> paginatedListWrapper = new PaginatedListWrapper<>();
+    public PaginatedListWrapper listPersons(@DefaultValue("1")
+                                            @QueryParam("page")
+                                            Integer page,
+                                            @DefaultValue("id")
+                                            @QueryParam("sortFields")
+                                            String sortFields,
+                                            @DefaultValue("asc")
+                                            @QueryParam("sortDirections")
+                                            String sortDirections) {
+        PaginatedListWrapper paginatedListWrapper = new PaginatedListWrapper();
         paginatedListWrapper.setCurrentPage(page);
         paginatedListWrapper.setSortFields(sortFields);
         paginatedListWrapper.setSortDirections(sortDirections);
@@ -70,7 +71,7 @@ public class PersonResource extends Application {
 
     @GET
     @Path("{id}")
-    public Person getPerson( @PathParam("id") Long id) {
+    public Person getPerson(@PathParam("id") Long id) {
         return entityManager.find(Person.class, id);
     }
 
