@@ -2,13 +2,25 @@
 
 ## How to run ? ##
 
-* You need JDK 7 or higher, Maven 3 and Wildfly 8 to run the application.
+* You need JDK 7 or higher, Maven 3 and Wildfly 8 or Glassfish 4.1 to run the application.
 
 * Build the code using Maven with the command: `mvn clean install`.
 
-* Copy the file javaee7-angular-3.1.war from target directory to your Wildfly installation folder /standalone/deployments
+* ## Deploy in the Wildfly 8 ##
 
-* Start Wildfly and go to http://localhost:8080/javaee7-angular-3.1/
+  * Copy the file javaee7-angular-3.2.war from target directory to your Wildfly installation folder /standalone/deployments
+
+  * Start Wildfly 8 and go to http://localhost:8080/javaee7-angular-3.2/
+
+* ## Deploy in the Glassfish 4.1 ##
+
+  * Open Admin Console (http://localhost:8484/)
+  
+  * Go to menu "Application" 
+  
+  * In the button "Deploy..." select the file javaee7-angular-3.2.war
+   
+  * Go to http://localhost:8080/javaee7-angular-3.2/
 
 ## Javascript Package Management (optional) ##
 
