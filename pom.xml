@@ -3,7 +3,7 @@
 
     <groupId>com.cortez.samples</groupId>
     <artifactId>javaee7-angular</artifactId>
-    <version>3.3</version>
+    <version>3.4</version>
     <packaging>war</packaging>
 
     <name>javaee7-angular</name>
@@ -23,6 +23,7 @@
         <version.plugin.war>2.4</version.plugin.war>
         <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
         <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
+        <version.plugin.wildfly>1.1.0.Alpha1</version.plugin.wildfly>
 
         <!-- Dependencies -->
         <version.dependency.javaee>7.0</version.dependency.javaee>
@@ -95,10 +96,11 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.2.Final</version>
+                <version>${version.plugin.wildfly}</version>
             </plugin>
         </plugins>
     </build>
