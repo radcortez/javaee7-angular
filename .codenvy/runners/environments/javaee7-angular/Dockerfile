@@ -4,4 +4,4 @@ ENV CODENVY_APP_BIND_DIR /home/user/wildfly/standalone/deployments/ROOT.war
 
 VOLUME ["/home/user/wildfly/standalone/deployments/ROOT.war"]
 
-CMD sudo touch ~/wildfly/standalone/deployments/ROOT.war.dodeploy
+RUN sudo touch ~/wildfly/standalone/deployments/ROOT.war.dodeploy
