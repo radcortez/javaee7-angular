@@ -40,8 +40,17 @@ module.exports = function (grunt) {
             // From grunt-bower-install-simple. Downloads the web dependencies.
             "bower-install-simple": {
                 options: {
-                    color:       true,
-                    production:  false
+                    color:       true
+                },
+                "prod": {
+                    options: {
+                        production: true
+                    }
+                },
+                "dev": {
+                    options: {
+                        production: false
+                    }
                 }
             },
 
