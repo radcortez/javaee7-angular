@@ -48,7 +48,8 @@ app.controller('personsListController', function ($scope, $rootScope, personServ
 
     // Watch the sortInfo variable. If changes are detected than we need to refresh the grid.
     // This also works for the first page access, since we assign the initial sorting in the initialize section.
-    $scope.$watch('sortInfo.fields[0]', function () {
+    $scope.$watch('sortInfo', function () {
+        $scope.persons = {currentPage: 1};
         $scope.refreshGrid();
     }, true);
 
