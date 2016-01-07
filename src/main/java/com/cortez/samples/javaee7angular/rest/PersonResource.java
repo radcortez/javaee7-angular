@@ -2,6 +2,7 @@ package com.cortez.samples.javaee7angular.rest;
 
 import com.cortez.samples.javaee7angular.data.Person;
 import com.cortez.samples.javaee7angular.pagination.PaginatedListWrapper;
+import lombok.extern.java.Log;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,6 +23,7 @@ import java.util.List;
 @Path("persons")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Log
 public class PersonResource extends Application {
     @PersistenceContext
     private EntityManager entityManager;
@@ -77,12 +79,14 @@ public class PersonResource extends Application {
 
     @POST
     public Person savePerson(Person person) {
+        log.info("Saving person: " + person.getName());
+
         if (person.getId() == null) {
-            Person personToSave = new Person();
-            personToSave.setName(person.getName());
-            personToSave.setDescription(person.getDescription());
-            personToSave.setImageUrl(person.getImageUrl());
-            entityManager.persist(person);
+            entityManager.persist(Person.builder()
+                                        .name(person.getName())
+                                        .description(person.getDescription())
+                                        .imageUrl(person.getImageUrl())
+                                        .build());
         } else {
             Person personToUpdate = getPerson(person.getId());
             personToUpdate.setName(person.getName());
