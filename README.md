@@ -44,7 +44,12 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
   * In the button "Deploy..." select the file javaee7-angular-3.6.war
    
   * Go to http://localhost:8080/javaee7-angular-3.6/ (http://localhost:8080/javaee7-angular-3.6/)
+  
+### Deploy in Embedded-Glassfish 3.1 ###
 
+  * You can also deploy the app, using Maven Embedded-Glassfish Plugin with the following command: `mvn embedded-glassfish:run`
+  * Go to http://localhost:8080/javaee7-angular-3.6/ (http://localhost:8080/javaee7-angular-3.6/)
+  
 ## Javascript Package Management (optional) ##
 
 The required JS libraries are included in the project, but it also possible to manage them following the next steps:
