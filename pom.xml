@@ -114,7 +114,7 @@
                 <configuration>
                     <app>target/javaee7-angular-3.6.war</app>
                     <port>8080</port>
-                    <contextRoot>test</contextRoot>
+                    <contextRoot>javaee7-angular-3.6</contextRoot>
                 </configuration>
                 <executions>
                     <execution>
