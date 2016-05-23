@@ -106,6 +106,25 @@
                     <filename>javaee7-angular.war</filename>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.glassfish</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <app>target/javaee7-angular-3.6.war</app>
+                    <port>8080</port>
+                    <contextRoot>test</contextRoot>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
