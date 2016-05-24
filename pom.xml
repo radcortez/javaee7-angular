@@ -70,6 +70,7 @@
                 <version>${version.plugin.war}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>javaee7-angular</warName>
                 </configuration>
             </plugin>
 
@@ -101,6 +102,9 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.plugin.wildfly}</version>
+                <configuration>
+                    <filename>javaee7-angular.war</filename>
+                </configuration>
             </plugin>
         </plugins>
     </build>
