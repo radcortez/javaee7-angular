@@ -27,13 +27,13 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
 
 ### Deploy in Wildfly 8 ###
 
-  * Copy the file javaee7-angular-3.4.war from target directory to your Wildfly installation folder
+  * Copy the file javaee7-angular.war from target directory to your Wildfly installation folder
   `standalone/deployments`
 
   * You can also deploy the app, using Maven Wildfly Plugin with the following command: `mvn wildfly:deploy`.
   You need to have Wildfly running.
 
-  * Start Wildfly 8 and go to http://localhost:8080/javaee7-angular-3.6/ (http://localhost:8080/javaee7-angular-3.6/)
+  * Start Wildfly 8 and go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
 
 ### Deploy in Glassfish 4.1 ###
 
@@ -41,14 +41,15 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
   
   * Go to menu "Application" 
   
-  * In the button "Deploy..." select the file javaee7-angular-3.6.war
+  * In the button "Deploy..." select the file javaee7-angular.war
    
-  * Go to http://localhost:8080/javaee7-angular-3.6/ (http://localhost:8080/javaee7-angular-3.6/)
+  * Go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
   
 ### Deploy in Embedded-Glassfish 3.1 ###
 
   * You can also deploy the app, using Maven Embedded-Glassfish Plugin with the following command: `mvn embedded-glassfish:run`
-  * Go to http://localhost:8080/javaee7-angular-3.6/ (http://localhost:8080/javaee7-angular-3.6/)
+  
+  * Go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
   
 ## Javascript Package Management (optional) ##
 
