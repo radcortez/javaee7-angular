@@ -3,7 +3,7 @@
 
     <groupId>com.cortez.samples</groupId>
     <artifactId>javaee7-angular</artifactId>
-    <version>3.6</version>
+    <version>3.7</version>
     <packaging>war</packaging>
 
     <name>javaee7-angular</name>
@@ -24,6 +24,7 @@
         <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
         <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
         <version.plugin.wildfly>1.1.0.Alpha1</version.plugin.wildfly>
+        <version.plugin.glassfish>4.1.1</version.plugin.glassfish>
 
         <!-- Dependencies -->
         <version.dependency.javaee>7.0</version.dependency.javaee>
@@ -70,6 +71,7 @@
                 <version>${version.plugin.war}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>javaee7-angular</warName>
                 </configuration>
             </plugin>
 
@@ -101,6 +103,32 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.plugin.wildfly}</version>
+                <configuration>
+                    <filename>javaee7-angular.war</filename>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.glassfish.embedded</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <version>${version.plugin.glassfish}</version>
+                <configuration>
+                    <port>8080</port>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <!-- Workaround to force the deploy goal to not execute on pre-integrations-tests -->
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <app>target/javaee7-angular.war</app>
+                            <contextRoot>javaee7-angular</contextRoot>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
