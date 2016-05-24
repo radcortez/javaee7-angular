@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cortez.samples</groupId>
@@ -24,6 +25,7 @@
         <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
         <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
         <version.plugin.wildfly>1.1.0.Alpha1</version.plugin.wildfly>
+        <version.plugin.glassfish>4.1.1</version.plugin.glassfish>
 
         <!-- Dependencies -->
         <version.dependency.javaee>7.0</version.dependency.javaee>
@@ -108,20 +110,24 @@
             </plugin>
 
             <plugin>
-                <groupId>org.glassfish</groupId>
+                <groupId>org.glassfish.embedded</groupId>
                 <artifactId>maven-embedded-glassfish-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${version.plugin.glassfish}</version>
                 <configuration>
-                    <app>target/javaee7-angular-3.6.war</app>
                     <port>8080</port>
-                    <contextRoot>javaee7-angular-3.6</contextRoot>
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>deploy</id>
+                        <!-- Workaround to force the deploy goal to not execute on pre-integrations-tests -->
+                        <phase>deploy</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>deploy</goal>
                         </goals>
+                        <configuration>
+                            <app>target/javaee7-angular.war</app>
+                            <contextRoot>javaee7-angular</contextRoot>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
