@@ -23,7 +23,7 @@
         <version.plugin.war>2.4</version.plugin.war>
         <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
         <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
-        <version.plugin.wildfly>1.1.0.Alpha1</version.plugin.wildfly>
+        <version.plugin.wildfly>1.1.0.Alpha8</version.plugin.wildfly>
         <version.plugin.glassfish>4.1.1</version.plugin.glassfish>
 
         <!-- Dependencies -->
@@ -104,6 +104,7 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.plugin.wildfly}</version>
                 <configuration>
+                    <version>10.0.0.Final</version>
                     <filename>javaee7-angular.war</filename>
                 </configuration>
             </plugin>

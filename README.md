@@ -25,7 +25,7 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
 * You need JDK 7 or higher, Maven 3 and Wildfly 8 or Glassfish 4.1 to run the application.
 * Build the code using Maven with the command: `mvn clean install`.
 
-### Deploy in Wildfly 8 ###
+### Deploy in Wildfly 10 ###
 
   * Copy the file javaee7-angular.war from target directory to your Wildfly installation folder
   `standalone/deployments`
@@ -33,7 +33,13 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
   * You can also deploy the app, using Maven Wildfly Plugin with the following command: `mvn wildfly:deploy`.
   You need to have Wildfly running.
 
-  * Start Wildfly 8 and go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
+  * Start Wildfly and go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
+  
+### Deploy in Embedded Wilffy ###
+
+  * Just run `mvn wildfly:run`
+  
+  * Go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
 
 ### Deploy in Glassfish 4.1 ###
 
