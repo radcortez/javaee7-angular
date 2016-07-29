@@ -30,8 +30,7 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
   * Copy the file javaee7-angular.war from target directory to your Wildfly installation folder
   `standalone/deployments`
 
-  * You can also deploy the app, using Maven Wildfly Plugin with the following command: `mvn wildfly:deploy`.
-  You need to have Wildfly running.
+  * You can also deploy the app using the Maven Wildfly Plugin with the following command: `mvn wildfly:deploy`. You need to have Wildfly running.
 
   * Start Wildfly and go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
   
@@ -51,9 +50,15 @@ few instructions here: [Codenvy setup to demo applications using Docker: Java EE
    
   * Go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
   
-### Deploy in Embedded-Glassfish 3.1 ###
+### Deploy in Embedded-Glassfish 4.1 ###
 
-  * You can also deploy the app, using Maven Embedded-Glassfish Plugin with the following command: `mvn embedded-glassfish:run`
+  * Just run `mvn embedded-glassfish:run`
+  
+  * Go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
+  
+### Run with TomEE ###
+
+  * Just run `mvn tomee:run`
   
   * Go to http://localhost:8080/javaee7-angular/ (http://localhost:8080/javaee7-angular/)
   
