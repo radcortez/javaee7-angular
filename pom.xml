@@ -3,7 +3,7 @@
 
     <groupId>com.cortez.samples</groupId>
     <artifactId>javaee7-angular</artifactId>
-    <version>3.10</version>
+    <version>4.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>javaee7-angular</name>
@@ -15,7 +15,7 @@
     <properties>
         <!-- Project -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
 
         <!-- Plugins -->
         <version.plugin.compiler>3.1</version.plugin.compiler>
